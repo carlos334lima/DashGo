@@ -17,18 +17,18 @@ export const theme = extendTheme({
     },
     pink: {
       "400": "#0BC5EA",
-    }
+    },
   },
   fonts: {
-    heading: 'Roboto',
-    body: 'Roboto',
+    heading: "Roboto",
+    body: "Roboto",
   },
   styles: {
     global: {
       body: {
-        bg: 'gray.900',
-        color: 'gray.50'
-      }
-    }
-  }
-})
+        bg: "gray.900",
+        color: "gray.50",
+      },
+    },
+  },
+});

@@ -10,6 +10,7 @@ import {
   FormLabel,
   FormControl,
 } from "@chakra-ui/react";
+import { InputBase } from "../components/Form/input";
 
 export default function SingIn() {
   return (
@@ -24,35 +25,8 @@ export default function SingIn() {
         borderRadius={8}
       >
         <Stack spacing="4">
-          <FormControl>
-            <FormLabel htmlFor="email">E-mail</FormLabel>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              size="lg"
-              variant="filled"
-              bgColor="gray.900"
-              placeholder="E-mail"
-              focusBorderColor="pink.500"
-              _hover={{ bgColor: "gray.900" }}
-            />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel htmlFor="password">Senha</FormLabel>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              size="lg"
-              variant="filled"
-              bgColor="gray.900"
-              placeholder="Senha"
-              focusBorderColor="pink.500"
-              _hover={{ bgColor: "gray.900" }}
-            />
-          </FormControl>
+          <InputBase type="email" name="email" label="E-mail" />
+          <InputBase type="password" name="password" label="Senha" />
         </Stack>
 
         <Button type="submit" size="lg" mt="6" colorScheme="pink">

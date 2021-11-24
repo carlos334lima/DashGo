@@ -4,9 +4,9 @@ import { Flex, Icon, IconButton, useBreakpointValue } from "@chakra-ui/react";
 
 //@components
 import { Logo } from "./Logo";
+import { Profile } from "./Profile";
 import { SearchBox } from "./SearchBox";
-/* import { Profile } from "./Profile";
-import { NotificationsNav } from "./NotificationsNav";   */
+import { NotificationsNav } from "./NotificationsNav";
 
 //@utils
 //import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
@@ -25,6 +25,11 @@ export function Header() {
     >
       <Logo />
       <SearchBox />
+
+      <Flex align="center" ml="auto">
+        <NotificationsNav />
+        <Profile />
+      </Flex>
     </Flex>
   );
 }

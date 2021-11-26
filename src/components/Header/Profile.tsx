@@ -14,6 +14,8 @@ export function Profile({ showProfileData = true }: ProfileProps) {
           carlos334lima@gmail.com
         </Text>
       </Box>
+
+      <Avatar size="md" name="Carlos Lima" />
     </Flex>
   );
 }

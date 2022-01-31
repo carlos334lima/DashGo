@@ -50,7 +50,7 @@ const options = {
     ],
   },
   fill: {
-    color: '#000',
+    color: "#000",
     opacity: 0.3,
     type: "gradient",
     gradient: {

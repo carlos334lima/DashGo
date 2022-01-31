@@ -29,6 +29,12 @@ import { Sidebar } from "../../components/Sidebar";
 import { PaginationItem } from "../../components/Pagination/Pagination";
 
 export default function UserList({ users }) {
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true
+  })
+
   return (
     <Box>
       <Header />
@@ -62,7 +68,7 @@ export default function UserList({ users }) {
                   <Checkbox colorScheme="pink" />
                 </Th>
                 <Th>Usuário</Th>
-                <Th>Data de cadastro</Th>
+                {isWideVersion && <Th>Data de cadastro</Th>}
               </Tr>
             </Thead>
             <Tbody>
@@ -80,7 +86,7 @@ export default function UserList({ users }) {
                     </Text>
                   </Box>
                 </Td>
-                <Td>04 de maio, 2022</Td>
+                {isWideVersion && <Td>04 de maio, 2022</Td>}
               </Tr>
             </Tbody>
           </Table>

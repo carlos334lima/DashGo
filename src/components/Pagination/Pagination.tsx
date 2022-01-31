@@ -14,7 +14,7 @@ export function PaginationItem({
 }: PaginationItemProps) {
   return (
     <Stack
-      direction="row"
+      direction={["column","row"]}
       mt="8"
       align="center"
       justify="space-between"

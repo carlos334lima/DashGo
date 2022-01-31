@@ -8,12 +8,14 @@ interface ProfileProps {
 export function Profile({ showProfileData = true }: ProfileProps) {
   return (
     <Flex align="center">
-      <Box mr="4" textAlign="right">
-        <Text>Carlos Henrique de Lima</Text>
-        <Text color="gray.300" fontSize="small">
-          carlos334lima@gmail.com
-        </Text>
-      </Box>
+      {showProfileData && (
+        <Box mr="4" textAlign="right">
+          <Text>Carlos Henrique de Lima</Text>
+          <Text color="gray.300" fontSize="small">
+            carlos334lima@gmail.com
+          </Text>
+        </Box>
+      )}
 
       <Avatar size="md" name="Carlos Lima" />
     </Flex>

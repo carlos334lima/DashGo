@@ -9,9 +9,16 @@ import { SearchBox } from "./SearchBox";
 import { NotificationsNav } from "./NotificationsNav";
 
 //@utils
-//import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
+import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 
 export function Header() {
+  const { onOpen } = useSidebarDrawer();
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return (
     <Flex
       h="20"
@@ -23,12 +30,22 @@ export function Header() {
       align="center"
       maxWidth={1480}
     >
+      {!isWideVersion && (
+        <IconButton
+          aria-label="open navigation"
+          icon={<Icon as={RiMenuLine} />}
+          fontSize="24"
+          variant="unstyled"
+          onClick={onOpen}
+          mr="2"
+        ></IconButton>
+      )}
       <Logo />
-      <SearchBox />
+      {isWideVersion && <SearchBox />}
 
       <Flex align="center" ml="auto">
         <NotificationsNav />
-        <Profile />
+        <Profile showProfileData={isWideVersion} />
       </Flex>
     </Flex>
   );

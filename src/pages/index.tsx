@@ -10,7 +10,9 @@ import {
   FormLabel,
   FormControl,
 } from "@chakra-ui/react";
-import { InputBase } from "../components/Form/input";
+
+//@component
+import { InputBase } from "../components/Form/Input";
 
 export default function SingIn() {
   return (

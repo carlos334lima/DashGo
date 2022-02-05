@@ -1,20 +1,27 @@
 //@libraries
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
-import {
-  Flex,
-  Button,
-  Stack,
-  Input,
-  FormLabel,
-  FormControl,
-} from "@chakra-ui/react";
+import { Flex, Button, Stack, FormLabel, FormControl } from "@chakra-ui/react";
 
 //@component
-import { InputBase } from "../components/Form/Input";
+import { Input } from "../components/Form/Input";
+
+//@utils
+import { SignFormData } from "../@types";
+import { SchemaSignForm } from "../utils/Schemas";
+
+
 
 export default function SingIn() {
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(SchemaSignForm),
+  });
+  const { isSubmitting, errors } = formState;
+
+  const handleSignIn: SubmitHandler<SignFormData> = async (values) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+  };
+
   return (
     <Flex w="100vw" h="100vh" align="center" justify="center">
       <Flex
@@ -25,13 +32,32 @@ export default function SingIn() {
         flexDir="column"
         maxWidth={360}
         borderRadius={8}
+        onSubmit={handleSubmit(handleSignIn)}
       >
         <Stack spacing="4">
-          <InputBase type="email" name="email" label="E-mail" />
-          <InputBase type="password" name="password" label="Senha" />
+          <Input
+            type="email"
+            name="email"
+            label="E-mail"
+            {...register("email")}
+            error={errors.email}
+          />
+          <Input
+            type="password"
+            name="password"
+            label="Senha"
+            {...register("password")}
+            error={errors.password}
+          />
         </Stack>
 
-        <Button type="submit" size="lg" mt="6" colorScheme="pink">
+        <Button
+          type="submit"
+          size="lg"
+          mt="6"
+          colorScheme="pink"
+          isLoading={isSubmitting}
+        >
           Entrar
         </Button>
       </Flex>

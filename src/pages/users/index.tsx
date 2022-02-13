@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import NextLink from "next/link";
 import { GetServerSideProps } from "next";
+import { useEffect, useState } from "react";
 
 //@libraries
 import { RiAddLine } from "react-icons/ri";
@@ -26,21 +26,20 @@ import {
 //@components
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
-import { PaginationItem } from "../../components/Pagination/Pagination";
+import { Pagination } from "../../components/Pagination";
 
 //@utils
 import { useUsers } from "../../hooks/useUsers";
-import { Pagination } from "../../components/Pagination";
 
 export default function UserList({ users }) {
-  const { data, isLoading, error } = useUsers();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { data, isLoading, error } = useUsers(currentPage);
 
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
-
-  console.log("data", data);
 
   return (
     <Box>
@@ -89,9 +88,9 @@ export default function UserList({ users }) {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.map((user) => {
+                  {data.users.map((user) => {
                     return (
-                      <Tr>
+                      <Tr key={user.id}>
                         <Td px={["4", "4", "6"]}>
                           <Checkbox colorScheme="pink" />
                         </Td>
@@ -113,9 +112,9 @@ export default function UserList({ users }) {
               </Table>
 
               <Pagination
-                totalCountOfRegisters={200}
-                currentPage={2}
-                onPageChange={() => {}}
+                totalCountOfRegisters={data.totalCount}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
               />
             </>
           )}

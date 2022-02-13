@@ -1,23 +1,23 @@
+//@utils
 import { api } from "./api";
+import { userFormatted } from "../../utils";
+import { IDataUser } from "../../@types";
 
-export async function loadUsers() {
-  const response = await api.get("/users");
-  const { data } = response;
+type GetUsersResponse = {
+  totalCount: number;
+  users: any;
+}
 
-  const users = data.users.map((user) => {
-    const userFormartted = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      createdAt: new Date(user.created_at).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }),
-    };
-
-    return userFormartted;
+export async function loadUsers(currentPage: number): Promise<GetUsersResponse> {
+  const { data, headers } = await api.get("/users", {
+    params: {
+      page: currentPage,
+    },
   });
 
-  return users;
+  const totalCount = Number(headers["x-total-count"]);
+
+  const users = userFormatted(data);
+
+  return { users, totalCount };
 }

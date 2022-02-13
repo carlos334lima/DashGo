@@ -27,38 +27,13 @@ import {
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { PaginationItem } from "../../components/Pagination/Pagination";
-import { useQuery } from "react-query";
+
+//@utils
+import { useUsers } from "../../hooks/useUsers";
+import { Pagination } from "../../components/Pagination";
 
 export default function UserList({ users }) {
-  const { data, isLoading, error } = useQuery(
-    "users",
-    async () => {
-      const response = await fetch("http://localhost:3000/api/users");
-      const data = await response.json();
-
-      const users = data.users.map((user) => {
-        const userFormartted = {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          createdAt: new Date(user.created_at).toLocaleDateString("pt-BR", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          }),
-        };
-
-        return userFormartted;
-      });
-
-      return users;
-    },
-    {
-      staleTime: 1000 * 5, // 5 seconds
-    }
-  );
-
-  //console.log("query", data);
+  const { data, isLoading, error } = useUsers();
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -137,7 +112,11 @@ export default function UserList({ users }) {
                 </Tbody>
               </Table>
 
-              <PaginationItem totalCountOfRegisters={10} currentPage={2} />
+              <Pagination
+                totalCountOfRegisters={200}
+                currentPage={2}
+                onPageChange={() => {}}
+              />
             </>
           )}
         </Box>

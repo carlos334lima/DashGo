@@ -1,3 +1,4 @@
+//@libraries
 import * as yup from "yup";
 
 export const SchemaSignForm = yup.object().shape({

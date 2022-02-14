@@ -4,13 +4,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Flex, Button, Stack, FormLabel, FormControl } from "@chakra-ui/react";
 
 //@component
-import { Input } from "../components/Form/Input";
+import { Input } from "@/components/Form/Input";
 
 //@utils
-import { SignFormData } from "../@types";
-import { SchemaSignForm } from "../utils/Schemas";
-
-
+import { SignFormData } from "@/@types";
+import { SchemaSignForm } from "@/utils/Schemas";
 
 export default function SingIn() {
   const { register, handleSubmit, formState } = useForm({

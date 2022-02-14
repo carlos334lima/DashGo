@@ -1,4 +1,4 @@
-import { IDataUser } from "../@types";
+import { IDataUser } from "@/@types";
 
 export function userFormatted(data: IDataUser) {
   const users = data.users.map((user) => {

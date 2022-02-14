@@ -4,9 +4,9 @@ import dynamic from "next/dynamic";
 import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
 
 //@components
-import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
-import { SearchBox } from "../components/Header/SearchBox";
+import { Header } from "@/components/Header";
+import { Sidebar } from "@/components/Sidebar";
+import { SearchBox } from "@/components/Header/SearchBox";
 
 //settings - graphic
 const options = {

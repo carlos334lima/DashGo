@@ -16,14 +16,13 @@ import {
 } from "@chakra-ui/react";
 
 //@components
-import { Header } from "../../components/Header";
-import { Sidebar } from "../../components/Sidebar";
-import { Input } from "../../components/Form/Input";
+import { Header } from "@/components/Header";
+import { Sidebar } from "@/components/Sidebar";
+import { Input } from "@/components/Form/Input";
 
 //@utils
-import { CreateUserFormData } from "../../@types";
-import { SchemaCreateUserForm } from "../../utils/Schemas";
-
+import { CreateUserFormData } from "@/@types";
+import { SchemaCreateUserForm } from "@/utils/Schemas";
 
 export default function CreateUser() {
   const { register, handleSubmit, formState } = useForm({

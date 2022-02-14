@@ -9,7 +9,7 @@ import { SearchBox } from "./SearchBox";
 import { NotificationsNav } from "./NotificationsNav";
 
 //@utils
-import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
+import { useSidebarDrawer } from "@/contexts/SidebarDrawerContext";
 
 export function Header() {
   const { onOpen } = useSidebarDrawer();

@@ -24,12 +24,14 @@ import {
 } from "@chakra-ui/react";
 
 //@components
-import { Header } from "../../components/Header";
-import { Sidebar } from "../../components/Sidebar";
-import { Pagination } from "../../components/Pagination";
+import { Header } from "@/components/Header";
+import { Sidebar } from "@/components/Sidebar";
+import { Pagination } from "@/components/Pagination";
 
 //@utils
-import { useUsers } from "../../hooks/useUsers";
+import { useUsers } from "@/hooks/useUsers";
+import { queryClient } from "@/services/reactQuery";
+import { prefetchQuery } from "@/services/requests";
 
 export default function UserList({ users }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,6 +42,18 @@ export default function UserList({ users }) {
     base: false,
     lg: true,
   });
+
+  async function handlePrefetchUser(userId: number) {
+    await queryClient.prefetchQuery(
+      ["user", userId],
+      async () => {
+        await prefetchQuery(userId);
+      },
+      {
+        staleTime: 1000 * 60 * 10,
+      }
+    );
+  }
 
   return (
     <Box>
@@ -96,7 +110,10 @@ export default function UserList({ users }) {
                         </Td>
                         <Td>
                           <Box>
-                            <Link color="purple.400">
+                            <Link
+                              color="purple.400"
+                              onMouseEnter={() => handlePrefetchUser(user.id)}
+                            >
                               <Text fontWeight="bold">{user.name}</Text>
                             </Link>
                             <Text fontSize="sm" color="gray.300">

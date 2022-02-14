@@ -6,11 +6,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 //@styles
-import { theme } from "../styles/theme";
-import { SidebarDrawerProvider } from "../contexts/SidebarDrawerContext";
+import { theme } from "@/styles/theme";
+import { SidebarDrawerProvider } from "@/contexts/SidebarDrawerContext";
 
 //@utils
-import { makeServer } from "../services/mirageJs";
+import { makeServer } from "@/services/mirageJs";
 
 if (process.env.NODE_ENV === "development") {
   makeServer();

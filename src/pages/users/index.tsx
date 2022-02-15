@@ -31,12 +31,14 @@ import { Pagination } from "@/components/Pagination";
 //@utils
 import { useUsers } from "@/hooks/useUsers";
 import { queryClient } from "@/services/reactQuery";
-import { prefetchQuery } from "@/services/requests";
+import { loadUsers, prefetchQuery } from "@/services/requests";
 
 export default function UserList({ users }) {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isLoading, error } = useUsers(currentPage);
+  const { data, isLoading, error } = useUsers(currentPage, {
+    initialData: users,
+  });
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -140,3 +142,13 @@ export default function UserList({ users }) {
     </Box>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { users, totalCount } = await loadUsers(1);
+
+  return {
+    props: {
+      users,
+    },
+  };
+};

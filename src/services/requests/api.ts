@@ -1,5 +1,8 @@
 import axios from "axios";
 
+//@utils
+import { dashGo } from "@/utils/constants";
+
 export const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: `${dashGo.baseUrl}/api`,
 });

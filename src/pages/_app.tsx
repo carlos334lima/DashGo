@@ -11,6 +11,7 @@ import { SidebarDrawerProvider } from "@/contexts/SidebarDrawerContext";
 
 //@utils
 import { makeServer } from "@/services/mirageJs";
+import { dashGo } from "@/utils/constants";
 
 if (process.env.NODE_ENV === "development") {
   makeServer();
@@ -26,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </ChakraProvider>
       </SidebarDrawerProvider>
-      <ReactQueryDevtools />
+      {dashGo.development && <ReactQueryDevtools />}
     </QueryClientProvider>
   );
 }
